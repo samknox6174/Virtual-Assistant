@@ -22,13 +22,13 @@ def wishMe():
         speak("Good Afternoon!")   
     else:
         speak("Good Evening!")  
-    speak("I am Jarvis Sir. Please tell me how may I help you")       
+    speak("Hello Sir! My name is Jarvis. How may I help you sir?")
 
 def takeCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
-        r.pause_threshold = 1
+        r.pause_threshold = 0.5
         audio = r.listen(source)
 
     try:
@@ -45,13 +45,13 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('youremail@gmail.com', 'your-password')
-    server.sendmail('youremail@gmail.com', to, content)
+    server.login('samkamath23@gmail.com', 'my-password')
+    server.sendmail('samruddhkamath@gmail.com', to, content)
     server.close()
 
 if __name__ == "__main__":
     wishMe()
-    while True:
+    if 1:
         query = takeCommand().lower()
 
         if 'wikipedia' in query:
@@ -68,11 +68,11 @@ if __name__ == "__main__":
         elif 'open google' in query:
             webbrowser.open("google.com")
 
-        elif 'open stackoverflow' in query:
+        elif 'open stack overflow' in query:
             webbrowser.open("stackoverflow.com")
 
         elif 'play music' in query:
-            music_dir = 'D:\\Non Critical\\songs\\Favorite Songs2'
+            music_dir = 'D:\\Studies\\Code\\Virtual Assistant\\Music'
             songs = os.listdir(music_dir)
             print(songs)    
             os.startfile(os.path.join(music_dir, songs[0]))
@@ -81,11 +81,11 @@ if __name__ == "__main__":
             strTime = datetime.datetime.now().strftime("%H:%M:%S")    
             speak(f"Sir, the time is {strTime}")
 
-        elif 'open code' in query:
-            codePath = "C:\\Users\\Haris\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+        elif 'open vs code' in query:
+            codePath = "C:\\Users\\admin\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
             os.startfile(codePath)
 
-        elif 'email to Samruddh' in query:
+        elif 'email to Sam' in query:
             try:
                 speak("What should I say?")
                 content = takeCommand()
